@@ -9,8 +9,14 @@ angular.module('cleApp.signin', ['cleApp.utils'])
     };
 
     $scope.signin = function(isValid) {
+
+
         //console.log($scope.user);
         if (isValid) {
+
+            if(AWS.config.credentials.clearCacheId === "function"){
+              AWS.config.credentials.clearCacheId()
+            }
 
             var authenticationData = {
                 Username : $scope.user.email,
@@ -38,7 +44,7 @@ angular.module('cleApp.signin', ['cleApp.utils'])
 
                         LOGIN_STRING = login;
                         console.log('login string is: ' + login);
-                        
+
                         AWS.config.credentials = new AWS.CognitoIdentityCredentials({
                             IdentityPoolId : IDENTITY_POOL_ID, // your identity pool id here
                             IdentityId: AWS.config.credentials.identityId

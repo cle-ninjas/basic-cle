@@ -5,7 +5,8 @@ var app = angular.module("cleApp",
     'cleApp.signin',
     'cleApp.signup',
     'cleApp.confirm',
-    'cleApp.idOcr']
+    'cleApp.idOcr',
+    'cleApp.identityVerification']
 );
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -60,6 +61,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         '': {
           templateUrl: 'modules/id-ocr/id-ocr.html',
           controller: 'IdOcrCtrl'
+        }
+      }
+    })
+
+    .state('identityVerification', {
+      url: '/identity-verification',
+      views: {
+        '': {
+          templateUrl: 'modules/identity-verification/identity-verification.html',
+          controller: 'IdentityVerificationCtrl'
         }
       }
     })

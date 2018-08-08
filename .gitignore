@@ -1,3 +1,7 @@
 .idea
 .python-version
 basic-cle.iml
+.DS_Store
+lib/*
+api-client.zip
+apiGateway-js-sdk

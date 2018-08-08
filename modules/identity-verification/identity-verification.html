@@ -1,0 +1,92 @@
+<header class="clearfix">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="#/id-ocr">OCR</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="#/identity-verification">Identity Verification</a>
+    </li>
+  </ul>
+</header>
+
+<section id="wrapper" class="container text-center">
+  <div class="col-lg-4 mx-auto">
+    <form name="identity-verification-form" class="form-horizontal m-t-20" novalidate ng-submit="upload(uploadForm.$valid)">
+      <div class="form-group ">
+        <div class="col-xs-12">
+          <h3>Identity Verification</h3>
+          <p class="text-muted">Cle POC.</p>
+        </div>
+      </div>
+      <div class="form-group" ng-show="errormessage">
+        <div class="col-xs-12 has-error">
+          <p class="bg-warning">{{errormessage}}</p>
+        </div>
+      </div>
+      <div class="form-group" ng-show="infomessage">
+        <div class="col-xs-12">
+          <p class="bg-info">{{infomessage}}</p>
+        </div>
+      </div>
+      <div class="form-group " ng-class="{ 'has-error': uploadForm.frontFile.$touched && uploadForm.frontFile.$invalid }">
+        <div class="col-xs-12">
+          <input name="frontFile" id="frontFile" class="form-control" placeholder="FrontFile" type="file">
+          <div class="help-block" ng-messages="uploadForm.frontFile.$error" ng-if="uploadForm.frontFile.$touched">
+            <p ng-message="required">This field is required</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group " ng-class="{ 'has-error': uploadForm.frontFile.$touched && uploadForm.frontFile.$invalid }">
+        <div class="col-xs-12">
+          <input name="selfieFile" id="selfieFile" class="form-control" placeholder="Selfie File" type="file">
+          <div class="help-block" ng-messages="uploadForm.frontFile.$error" ng-if="uploadForm.frontFile.$touched">
+            <p ng-message="required">This field is required</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group " ng-class="{ 'has-error': uploadForm.frontFile.$touched && uploadForm.frontFile.$invalid }">
+        <div class="col-xs-6">Fullname</div>
+        <div class="col-xs-6">
+          <input name="fullname" id="fullname" class="form-control" placeholder="Fullname" type="text">
+          <div class="help-block" ng-messages="uploadForm.frontFile.$error" ng-if="uploadForm.frontFile.$touched">
+            <p ng-message="required">This field is required</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container">
+        <div class="row">
+
+          <div class="col">
+            <img src="{{files.frontFileSrc}}" ng-class="{verifyButtonDisabled ? done : blur}" height="200" alt="Image preview...">
+          </div>
+          <div class="col">
+            <div ng-repeat="field in ocrData.fields">
+              <address>
+                <strong> {{field.name}}:</strong>
+                <br/> {{field.value}}
+                <br/>
+                <p class="text-lowercase">
+                  <small>confidence: {{field.confidence}} status:{{field.status}}</small>
+                </p>
+              </address>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group text-center m-t-40">
+        <div class="col-xs-12">
+          <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit" ng-disabled="identity-verification-form.$invalid || verifyButtonDisabled ">
+              Verify
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</section>
